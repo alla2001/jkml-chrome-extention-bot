@@ -21,8 +21,7 @@ chrome.runtime.onMessage.addListener(function (request, message) {
     if (request == "check") {
 
         
-        var evt = document.createEvent('submit');
-        !document.getElementById("myForm").dispatchEvent(evt);
+      
     }
     else {
 
