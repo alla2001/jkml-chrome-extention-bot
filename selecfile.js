@@ -3,11 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
     function onclick1() {
         
        
-        var evt = document.createEvent('submit');
-        !document.getElementById("myForm").dispatchEvent(evt);
-
-
         
+
+
+        chrome.tabs.query({ currentWindow: true, active: true },
+            function (tabs) {
+
+                chrome.tabs.sendMessage(tabs[0].id, "check")
+            })
        
 
 

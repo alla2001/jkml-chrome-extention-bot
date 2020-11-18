@@ -6,12 +6,15 @@ chrome.runtime.onMessage.addListener(function (request, message) {
     var input = boom.querySelector(".styled");
     var player = iframe[0].contentWindow.document.querySelector(".player");
     var letters=iframe[0].contentWindow.document.querySelector(".syllable");
-    
+    var e = document.createEvent('HTMLEvents');
+    e.initEvent('submit', true, true);
     async function request1(letters,i) {
         let data = await fetch('https://api.datamuse.com/words?sp=*'+letters+'*');
         var words = await data.json();
-        
-        input.value=words[words[Math.random.getRandomInt(words.length)].word].word;
+        min = Math.ceil(0);
+        max = Math.floor(words.length);
+        input.value=words[1].word;
+        boom.querySelector("form").dispatchEvent(e);
         
        
         
@@ -22,7 +25,8 @@ chrome.runtime.onMessage.addListener(function (request, message) {
     if (request == "check") {
 
         
-      
+        boom.querySelector("form").dispatchEvent(e);
+       
     }
     else {
 
