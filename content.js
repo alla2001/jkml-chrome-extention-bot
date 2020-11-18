@@ -10,7 +10,8 @@ chrome.runtime.onMessage.addListener(function (request, message) {
     async function request1(letters,i) {
         let data = await fetch('https://api.datamuse.com/words?sp=*'+letters+'*');
         var words = await data.json();
-        input.value=words[i].word;
+        
+        input.value=words[words[Math.random.getRandomInt(words.length)].word].word;
         
        
         
