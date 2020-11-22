@@ -1,19 +1,36 @@
-var running = false;
+
+localStorage.setItem('run', 'false');
 document.addEventListener('DOMContentLoaded', function () {
+
+    var running = localStorage.getItem('run');
+    alert(running);
+    if (running == "true") {
+        document.querySelector('button').style.backgroundColor = "red";
+        document.querySelector('button').innerHTML = "Stop";
+    } else {
+        document.querySelector('button').style.backgroundColor = "cadetblue";
+        document.querySelector('button').innerHTML = "Start";
+    }
     document.getElementById('button').addEventListener('click', onclick, false)
     function onclick() {
-        
-        if (running == false) {
-            var player = document.getElementById("name");
+
+
+        var running = localStorage.getItem('run');
+
+
+
+        if (running == "false") {
+
 
             chrome.tabs.query({ currentWindow: true, active: true },
                 function (tabs) {
 
-                    chrome.tabs.sendMessage(tabs[0].id, player.value)
+
+                    chrome.tabs.sendMessage(tabs[0].id, "on")
                 })
             document.querySelector('button').style.backgroundColor = "red";
             document.querySelector('button').innerHTML = "Stop";
-            running = true;
+            localStorage.setItem('run', 'true');
 
 
 
@@ -27,7 +44,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
             document.querySelector('button').style.backgroundColor = "cadetblue";
             document.querySelector('button').innerHTML = "Start";
-            running = false;
+
+            localStorage.setItem('run', 'false');
 
         }
 
