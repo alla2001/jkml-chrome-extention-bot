@@ -1,9 +1,14 @@
 
-localStorage.setItem('run', 'false');
+var running = localStorage.getItem('run');
+if (running==null){
+    alert("lol");
+    localStorage.setItem('run', 'false');
+}
+
 document.addEventListener('DOMContentLoaded', function () {
 
     var running = localStorage.getItem('run');
-    alert(running);
+    
     if (running == "true") {
         document.querySelector('button').style.backgroundColor = "red";
         document.querySelector('button').innerHTML = "Stop";
