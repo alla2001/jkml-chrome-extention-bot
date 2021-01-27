@@ -1,6 +1,6 @@
 
 chrome.runtime.onMessage.addListener(function (request, message) {
-    
+    //i love magas
     
     var i = 0;
     var iframe = document.getElementsByTagName("iframe");
